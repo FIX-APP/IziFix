@@ -5,8 +5,8 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: HomeView
+      name: '',
+      component: () => import("../../fixing/pages/register.component.vue"),
     },
     {
       path: "/solicitud",
@@ -16,6 +16,16 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import("../../fixing/pages/solicitud-servicio.component.vue"),
      },
+     {
+      path: '/register',
+      name: 'register',
+      component: () => import("../../fixing/pages/register.component.vue"),
+    },
+    {
+      path: '/booking',
+      name: 'booking',
+      component: () => import("../../fixing/pages/booking.vue"),
+    },
   ]
 })
 
