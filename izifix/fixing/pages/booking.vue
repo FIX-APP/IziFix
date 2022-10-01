@@ -1,6 +1,6 @@
 <script setup>
-import Payments from './components/Payments.vue';
-import Reserve from './components/Reserve.vue';
+import Payments from './common/Payments.vue';
+import Reserve from './common/Reserve.vue';
 </script>
 
 <template>
