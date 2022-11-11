@@ -14,7 +14,7 @@ const router = createRouter({
     component: Login
     },
     {
-      path: '/client',
+      path: '/client/:id',
       name:'client',
       component: ()=>import('../components/client/Layout/ClientLayout.vue'),
       children:[
@@ -25,9 +25,9 @@ const router = createRouter({
        {
           path:'myappliance',
           name:'myappliance',
-          component: ()=>import(/webpackChunkName:"MyAppliance"/'../views/Client/client-my-appliance.vue'),
+          component: ()=>import(/*webpackChunkName:"MyAppliance"*/'../views/Client/client-my-appliance.vue'),
        },
-
+       
        {
           path:'appointment',
           name:'client-appointment',
@@ -36,14 +36,31 @@ const router = createRouter({
        {
           path:'profile',
           name:'client-profile',
-          component: ()=>import(/webpackChunkName:"Profile"/'../views/Client/client-profile.vue'),
-          props:(route)=>{
-             const id=Number(route.params.id)
-             return isNaN(id) ? {id:1}:{id:id}
-          }
+          component: ()=>import(/*webpackChunkName:"Profile"*/'../views/Client/client-profile.vue'),
        },
     ]
    },
+   {
+      path: '/technician/:id',
+      name:'technician',
+      component: ()=>import('../components/technician/Layout/ClientLayout.vue'),
+      children:[
+        {
+        path:'',
+        redirect:{name:'myappliance'}
+        },       
+       {
+          path:'appointment',
+          name:'technician-appointment',
+          component: ()=>import('../views/technician/technician-appointments.vue')
+       },
+       {
+          path:'profile',
+          name:'technician-profile',
+          component: ()=>import(/*webpackChunkName:"Profile"*/'../views/technician/technician-profile.vue'),
+       },
+    ]
+   }
   ]
 })
 
