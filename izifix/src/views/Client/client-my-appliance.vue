@@ -1,47 +1,59 @@
 <template>
-  <div class="content flex flex-column align-items-center">
-        <section class="title">
-          <h1 class="title__text">{{$t("MY APPLIANCES")}}</h1>
-        </section>
+    <div>
+          <pv-datatable :value="artifacts" responsiveLayout="scroll">
+              <template #header>
+                  <div class="table-header">
+                      Products
+                      <Button icon="pi pi-refresh" />
+                  </div>
+              </template>
+              <pv-column field="name" header="Name"></pv-column>
+              <pv-column header="url">
+                  <template #body="slotProps">
+                      <img :src="slotProps.data.url" class="product-image" />
+                  </template>
+              </pv-column>
+  
+              <template #footer>
+                  In total you have {{artifacts ? artifacts.length : 0 }} artifacts.
+              </template>
+          </pv-datatable>
       </div>
-</template>
-
-
-<script>
-</script>
-
-<style scoped>
-.content{
-    margin: auto 0;
-    height: 95vh;
-}
-.title{
-    text-align: center;
-    padding: 2rem;
-}
-.contain-panel{
-    width:100%;
-    padding: 1rem;
-    background-image: url("@/assets/img/backgrounds/appliance_pattern.jpg");
-    background-size: cover;
-}
-.panel{
-    text-align: center;
-    width:100%;
-    height: 100%;
-}
-.panel__image{
-    width:80px;
-    height: 80px;
-    vertical-align: middle;
-}
-.panel__text{
-    color: rgb(55, 55, 65);
-    font-weight: bold;
-    padding: 1rem;
-}
-@media(min-width:768px){
-
-}
-
-</style>
+  </template>
+  
+  
+  <script>
+  import {artifactService} from '../../core/services/artifactsService';
+  export default{
+      components:{
+      },
+      data(){
+          return{
+              artifacts:[]
+          }
+      },
+      services:null,
+      created(){
+          this.services=new artifactService();
+      },
+      mounted(){
+          this.services.getByUserId(this.$route.params.id).then(value=>{
+              this.artifacts=value;
+          });
+      }
+  }
+  </script>
+  
+  <style lang="scss" scoped>
+  .table-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+  }
+  
+  .product-image {
+      width: 50px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+  }
+  </style>
+  
