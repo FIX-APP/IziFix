@@ -1,14 +1,28 @@
 <template>
-	<div>
-		<pv-menu-bar :model="items">
-			<template #start>
-				<img alt="" src="@/assets/img/text-logos/logo_repair.png" height="20" class="mr-2">
-			</template>
-			<template #end>
-                
-			</template>
-		</pv-menu-bar>
-	</div>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">FixApp</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                <a class="nav-link" :href="'/client/'+this.$route.params.id+'/appointment'">Appointments</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" :href="'/client/'+this.$route.params.id+'/myappliance'">Artifacts</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" :href="'/client/'+this.$route.params.id+'/profile'">Profile</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" :href="'/'">Log Out</a>
+                </li>
+            </ul>
+            </div>
+        </div>
+    </nav>
 </template>
 
 <script>
@@ -16,28 +30,7 @@
 export default {
     data() {
         return {
-            items: [
-                {
-					label:'My artifacts',
-					icon:'pi pi-home',
-                    to: {name:'myappliance'}
-                },
-                {
-					label:'Appointment',
-					icon:'pi pi-book',
-                    to: {name:'client-appointment'}
-                },
-                {
-					label:'Profile',
-					icon:'pi pi-calendar-times',
-                    to: {name:'client-profile'}
-                },
-              {
-                label:'LogOut',
-                icon:'pi pi-sign-out',
-                to: '/'
-              }
-            ]
+
         }
     }
 }
@@ -45,5 +38,5 @@ export default {
 </script>
 
 <style>
-   
+
 </style>
