@@ -14,6 +14,11 @@ const router = createRouter({
     component: Login
     },
     {
+      path:'/register',
+      name:'rebister',
+      component:()=>import('../views/shared/general-register.vue'),
+    },
+    {
       path: '/client/:id',
       name:'client',
       component: ()=>import('../components/client/Layout/ClientLayout.vue'),
