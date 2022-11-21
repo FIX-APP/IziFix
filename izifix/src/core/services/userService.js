@@ -1,15 +1,18 @@
 import axios from  'axios'
 export class userService{
     getAllUsers(){
-        return axios.get("http://localhost:3000/users")
+        return axios.get("https://localhost:7096/api/v1/users")
     }
     getById(id){
-        return axios.get("http://localhost:3000/users"+id);
+        return axios.get("https://localhost:7096/api/v1/users"+id);
     }
     registerUser(name,lastname,cellphone,password,email,address,rol){
-        return axios.post("http://localhost:3000/users",{
+        return axios.post("https://localhost:7096/api/v1/users",{
             name,lastname,cellphone,password,email,address,rol
         })
+    }
+    editUser(id,name,lastname,cellphone,password,email,address,rol){
+        return axios.put("https://localhost:7096/api/v1/users"+id,name,lastname,cellphone,password,email,address,rol);
     }
     async logIn(email,password){
         let id=0;

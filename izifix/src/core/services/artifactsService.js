@@ -1,23 +1,19 @@
 import axios from  'axios'
 export class artifactService{
     getAllUsers(){
-        return axios.get("http://localhost:3000/artifacts")
+        return axios.get("https://localhost:7096/api/v1/artifacts")
     }
     registerArtifact(userId,name,url){
-        return axios.post("http://localhost:3000/artifacts",{
-            userId,name,url
+        return axios.post("https://localhost:7096/api/v1/artifacts",{
+            name,url,userId
         })
     }
-    async getByUserId(id){
-        let arr=[];
-        await this.getAllUsers().then(response=>{
-            response.data.forEach(element => {
-                if(element.userId==id){
-                    arr.push(element);
-                }
-            });
-        })
-        print("Artefactos");
-        return arr;
+
+    getByUserId(id){
+        return axios.get('https://localhost:7096/api/v1/users/'+id+'/artifacts')
+
+    }
+    deleteArtifact(id){
+        return axios.delete('https://localhost:7096/api/v1/artifacts/'+id)
     }
 }

@@ -1,28 +1,18 @@
 import axios from  'axios'
 export class appointmentService{
     getAllAppointments(){
-        return axios.get("http://localhost:3000/appointments")
+        return axios.get("https://localhost:7096/api/v1/appointments")
     }
     registerAppointment(userId,technicianId,description){
-        return axios.post("http://localhost:3000/appointments",{
-            userId,technicianId,description
+        return axios.post("https://localhost:7096/api/v1/appointments",{
+            userId,technicianId
         })
     }
     delete(id){
-        return axios.delete("http://localhost:3000/appointments"+id);
+        return axios.delete("https://localhost:7096/api/v1/appointments"+id);
 
     }
-    async getByUserId(id){
-        let arr=[];
-        await this.getAllAppointments().then(response=>{
-            response.data.forEach(element => {
-                if(element.userId==id){
-                    arr.push(element);
-                }
-            });
-        })
-        console.log("Appointments");
-        console.log(arr);
-        return arr;
+    getByUserId(id){
+        return axios.get('https://localhost:7096/api/v1/users/'+id+'/appointments');
     }
 }
